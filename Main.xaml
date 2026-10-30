@@ -1,0 +1,307 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" this:Main.in_SheetId="11mJztwWddQWLpLL9LZ4VEkG5nPHs-I5SYoUuxC8c-ew" this:Main.in_SheetName="POST IT" this:Main.in_CredentialTarget="PubmatReminder.Gmail" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ss="clr-namespace:System.Security;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:uasf="clr-namespace:UiPath.Activities.System.FileOperations;assembly=UiPath.System.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:umae="clr-namespace:UiPath.Mail.Activities.Enums;assembly=UiPath.Mail.Activities" xmlns:umame="clr-namespace:UiPath.MicrosoftOffice365.Activities.Mail.Enums;assembly=UiPath.Mail.Activities" xmlns:upr="clr-namespace:UiPath.Platform.ResourceHandling;assembly=UiPath.Platform" xmlns:usau="clr-namespace:UiPath.Shared.Activities.Utils;assembly=UiPath.Mail.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_SheetId" Type="InArgument(x:String)" />
+    <x:Property Name="in_SheetName" Type="InArgument(x:String)" />
+    <x:Property Name="in_CredentialTarget" Type="InArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="20">
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Globalization</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="40">
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Runtime</AssemblyReference>
+      <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>NPOI.Core</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Pubmat Deadline Reminder" sap:VirtualizedContainerService.HintSize="897.2,5040.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="sd:DataTable" Name="dtPubmats" />
+      <Variable x:TypeArguments="x:Int32" Name="intDeadlineCol" />
+      <Variable x:TypeArguments="x:Int32" Default="0" Name="intSent" />
+      <Variable x:TypeArguments="upr:ILocalResource" Name="fileSheet" />
+      <Variable x:TypeArguments="x:String" Name="strGmailAddress" />
+      <Variable x:TypeArguments="s:DateTime" Name="dtToday" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <If Condition="[String.IsNullOrWhiteSpace(in_SheetId) OrElse in_SheetId = &quot;PASTE_SHEET_ID_HERE&quot;]" DisplayName="Sheet ID set?" sap:VirtualizedContainerService.HintSize="556.8,336" sap2010:WorkflowViewState.IdRef="If_1">
+      <If.Then>
+        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,173.6" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Throw DisplayName="Fail: no sheet ID" Exception="[New ArgumentException(&quot;Set in_SheetId to the Google Sheet ID (the part between /d/ and /edit in the link).&quot;)]" sap:VirtualizedContainerService.HintSize="416,113.6" sap2010:WorkflowViewState.IdRef="Throw_1" />
+        </Sequence>
+      </If.Then>
+    </If>
+    <Assign DisplayName="Today in Manila time" sap:VirtualizedContainerService.HintSize="556.8,174.4" sap2010:WorkflowViewState.IdRef="Assign_11">
+      <Assign.To>
+        <OutArgument x:TypeArguments="s:DateTime">[dtToday]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="s:DateTime">[TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById("Singapore Standard Time")).Date]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:GetRobotCredential Password="{x:Null}" TimeoutMS="{x:Null}" AssetName="[in_CredentialTarget]" CacheStrategy="None" DisplayName="Check Gmail credential asset exists" sap:VirtualizedContainerService.HintSize="556.8,175.2" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Username="[strGmailAddress]" />
+    <uasf:DownloadFileFromUrl UserAgentHeader="{x:Null}" ConflictResolution="Replace" DisplayName="Download Google Sheet as CSV" FileName="[System.IO.Path.Combine(System.IO.Path.GetTempPath(), &quot;pubmats.csv&quot;)]" sap:VirtualizedContainerService.HintSize="556.8,122.4" sap2010:WorkflowViewState.IdRef="DownloadFileFromUrl_1" ResponseAttachment="[fileSheet]" Url="[&quot;https://docs.google.com/spreadsheets/d/&quot; + in_SheetId + &quot;/gviz/tq?tqx=out:csv&amp;sheet=&quot; + System.Uri.EscapeDataString(in_SheetName) + &quot;&amp;range=C4:G&quot;]">
+      <uasf:DownloadFileFromUrl.Timeout>
+        <InArgument x:TypeArguments="s:Nullable(x:Int32)">
+          <Literal x:TypeArguments="s:Nullable(x:Int32)" Value="120" />
+        </InArgument>
+      </uasf:DownloadFileFromUrl.Timeout>
+    </uasf:DownloadFileFromUrl>
+    <ui:ReadCsvFile PathResource="{x:Null}" DataTable="[dtPubmats]" Delimitator="Comma" DelimitatorForViewModel="Comma" DisplayName="Read pubmat sheet" FilePath="[fileSheet.LocalPath]" sap:VirtualizedContainerService.HintSize="556.8,168.8" sap2010:WorkflowViewState.IdRef="ReadCsvFile_1" />
+    <Assign DisplayName="Find Deadline column" sap:VirtualizedContainerService.HintSize="556.8,174.4" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:Int32">[intDeadlineCol]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:Int32">[dtPubmats.Columns.IndexOf("Deadline")]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <If Condition="[intDeadlineCol &lt; 0]" DisplayName="Deadline column missing?" sap:VirtualizedContainerService.HintSize="556.8,336" sap2010:WorkflowViewState.IdRef="If_3">
+      <If.Then>
+        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="449.6,173.6" sap2010:WorkflowViewState.IdRef="Sequence_4">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Throw DisplayName="Fail: column not found" Exception="[New Exception(&quot;Column 'Deadline' not found (headers must start at C4) in sheet&quot; + in_SheetName)]" sap:VirtualizedContainerService.HintSize="416,113.6" sap2010:WorkflowViewState.IdRef="Throw_3" />
+        </Sequence>
+      </If.Then>
+    </If>
+    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dtPubmats]" DisplayName="For each pubmat" sap:VirtualizedContainerService.HintSize="556.8,3364.8" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+      <ui:ForEachRow.Body>
+        <ActivityAction x:TypeArguments="sd:DataRow">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="555.2,3183.2" sap2010:WorkflowViewState.IdRef="Sequence_5">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <TryCatch DisplayName="Process row (skip on bad data)" sap:VirtualizedContainerService.HintSize="521.6,3123.2" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+              <TryCatch.Try>
+                <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="520,2676" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="x:String" Name="strDeadlineRaw" />
+                    <Variable x:TypeArguments="s:DateTime" Name="dtDeadline" />
+                    <Variable x:TypeArguments="x:Int32" Name="intDaysLeft" />
+                    <Variable x:TypeArguments="x:String" Name="strDue" />
+                    <Variable x:TypeArguments="x:String" Name="strEmail" />
+                    <Variable x:TypeArguments="x:String" Name="strFirstName" />
+                    <Variable x:TypeArguments="x:String" Name="strEvent" />
+                    <Variable x:TypeArguments="x:String" Name="strNotes" />
+                  </Sequence.Variables>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Assign DisplayName="Read raw deadline" sap:VirtualizedContainerService.HintSize="486.4,174.4" sap2010:WorkflowViewState.IdRef="Assign_2">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[strDeadlineRaw]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[row(intDeadlineCol).ToString.Trim]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <If Condition="[strDeadlineRaw &lt;&gt; &quot;&quot; AndAlso Not row(&quot;Pub Mat Status&quot;).ToString.Trim.Equals(&quot;Done&quot;, StringComparison.OrdinalIgnoreCase)]" DisplayName="Has deadline and not Done?" sap:VirtualizedContainerService.HintSize="486.4,2441.6" sap2010:WorkflowViewState.IdRef="If_4">
+                    <If.Then>
+                      <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="484.8,2288" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <Assign DisplayName="Parse deadline" sap:VirtualizedContainerService.HintSize="451.2,174.4" sap2010:WorkflowViewState.IdRef="Assign_3">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="s:DateTime">[dtDeadline]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="s:DateTime">[If(TypeOf row(intDeadlineCol) Is DateTime, CDate(row(intDeadlineCol)), If(IsNumeric(strDeadlineRaw), DateTime.FromOADate(CDbl(strDeadlineRaw)), If(Regex.IsMatch(strDeadlineRaw, "^[A-Za-z]{3}[A-Za-z]*\.?\s+\d{1,2}(?!\d)"), If(DateTime.ParseExact(Regex.Replace(strDeadlineRaw, "^([A-Za-z]{3})[A-Za-z]*\.?\s+(\d{1,2}).*$", "$1 $2") &amp; " " &amp; dtToday.Year.ToString, "MMM d yyyy", CultureInfo.InvariantCulture) &lt; dtToday.AddMonths(-6), DateTime.ParseExact(Regex.Replace(strDeadlineRaw, "^([A-Za-z]{3})[A-Za-z]*\.?\s+(\d{1,2}).*$", "$1 $2") &amp; " " &amp; dtToday.Year.ToString, "MMM d yyyy", CultureInfo.InvariantCulture).AddYears(1), DateTime.ParseExact(Regex.Replace(strDeadlineRaw, "^([A-Za-z]{3})[A-Za-z]*\.?\s+(\d{1,2}).*$", "$1 $2") &amp; " " &amp; dtToday.Year.ToString, "MMM d yyyy", CultureInfo.InvariantCulture)), DateTime.Parse(strDeadlineRaw))))]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <Assign DisplayName="Days left" sap:VirtualizedContainerService.HintSize="451.2,174.4" sap2010:WorkflowViewState.IdRef="Assign_4">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Int32">[intDaysLeft]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Int32">[(dtDeadline.Date - dtToday).Days]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <If Condition="[intDaysLeft &gt;= 0 AndAlso intDaysLeft &lt;= 7]" DisplayName="Due within 7 days?" sap:VirtualizedContainerService.HintSize="451.2,1879.2" sap2010:WorkflowViewState.IdRef="If_5">
+                          <If.Then>
+                            <Sequence DisplayName="Send reminder" sap:VirtualizedContainerService.HintSize="449.6,1725.6" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                              <Sequence.Variables>
+                                <Variable x:TypeArguments="ss:SecureString" Name="secGmailPassword" />
+                              </Sequence.Variables>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:GetRobotCredential TimeoutMS="{x:Null}" Username="{x:Null}" AssetName="[in_CredentialTarget]" CacheStrategy="None" DisplayName="Get Gmail App Password (Orchestrator asset)" sap:VirtualizedContainerService.HintSize="416,175.2" sap2010:WorkflowViewState.IdRef="GetRobotCredential_2" Password="[secGmailPassword]" />
+                              <Assign DisplayName="Assignee email" sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="Assign_5">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">[strEmail]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">[row("Assigned to").ToString.Trim]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <Assign DisplayName="First name from email" sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="Assign_6">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">[strFirstName]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">[CultureInfo.InvariantCulture.TextInfo.ToTitleCase(Regex.Match(strEmail.Split("@"c)(0), "[A-Za-z]+").Value.ToLower)]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <Assign DisplayName="Event name" sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="Assign_7">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">[strEvent]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">[row("Event").ToString.Trim]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <Assign DisplayName="Notes" sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="Assign_8">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">[strNotes]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">[row("Notes").ToString.Trim]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <Assign DisplayName="Due phrase" sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="Assign_9">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">[strDue]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">[If(intDaysLeft = 0, "today", If(intDaysLeft = 1, "tomorrow", "in " + intDaysLeft.ToString + " days"))]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" Password="{x:Null}" ReplyTo="{x:Null}" ResourceAttachmentList="{x:Null}" ResourceAttachments="{x:Null}" Result="{x:Null}" TimeoutMS="{x:Null}" UseOAuth="{x:Null}" Action="Forward" AttachmentInputMode="Existing" Body="[&quot;Good day, &quot; + strFirstName + &quot;!&quot; + vbCrLf + vbCrLf + &quot;This is a friendly reminder that the pubmat for &quot; + strEvent + &quot; is due &quot; + strDue + &quot;, on &quot; + dtDeadline.ToString(&quot;dddd, MMMM d, yyyy&quot;) + &quot;, and it isn't marked Done yet.&quot; + vbCrLf + vbCrLf + If(strNotes = &quot;&quot;, &quot;&quot;, &quot;Notes: &quot; + strNotes + vbCrLf + vbCrLf) + &quot;Please update its status once it's finished. Thank you!&quot;]" ConnectionMode="LegacyConfiguration" CreatedAfterSolutionSupport="False" DisplayName="Send reminder (Gmail SMTP)" Email="[strGmailAddress]" EnableSSL="True" sap:VirtualizedContainerService.HintSize="416,278.4" sap2010:WorkflowViewState.IdRef="SendMail_1" IgnoreCRL="False" IsBodyHtml="False" Port="587" SecureConnection="StartTls" SecurePassword="[secGmailPassword]" Server="smtp.gmail.com" Subject="[&quot;Reminder: &quot; + strEvent + &quot; pubmat due &quot; + strDue + &quot; (&quot; + dtDeadline.ToString(&quot;MMM d&quot;) + &quot;)&quot;]" To="[strEmail]" UseISConnection="False" UseRichTextEditor="True">
+                                <ui:SendMail.AttachmentsBackup>
+                                  <usau:BackupSlot x:TypeArguments="umame:AttachmentInputMode" StoredValue="Existing">
+                                    <usau:BackupSlot.BackupValues>
+                                      <scg:Dictionary x:TypeArguments="umame:AttachmentInputMode, scg:List(x:Object)" />
+                                    </usau:BackupSlot.BackupValues>
+                                  </usau:BackupSlot>
+                                </ui:SendMail.AttachmentsBackup>
+                                <ui:SendMail.ConnectionDetailsBackupSlot>
+                                  <usau:BackupSlot x:TypeArguments="umae:ConnectionDetails" StoredValue="LegacyConfiguration">
+                                    <usau:BackupSlot.BackupValues>
+                                      <scg:Dictionary x:TypeArguments="umae:ConnectionDetails, scg:List(x:Object)" />
+                                    </usau:BackupSlot.BackupValues>
+                                  </usau:BackupSlot>
+                                </ui:SendMail.ConnectionDetailsBackupSlot>
+                                <ui:SendMail.Files>
+                                  <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+                                </ui:SendMail.Files>
+                              </ui:SendMail>
+                              <Assign DisplayName="Count sent" sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="Assign_10">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Int32">[intSent]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Int32">[intSent + 1]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <ui:LogMessage DisplayName="Log sent" sap:VirtualizedContainerService.HintSize="416,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Reminder sent to &quot; + strEmail + &quot; for &quot; + strEvent + &quot; (due &quot; + strDue + &quot;)&quot;]" />
+                            </Sequence>
+                          </If.Then>
+                        </If>
+                      </Sequence>
+                    </If.Then>
+                  </If>
+                </Sequence>
+              </TryCatch.Try>
+              <TryCatch.Catches>
+                <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                  <ActivityAction x:TypeArguments="s:Exception">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="s:Exception" Name="ex" />
+                    </ActivityAction.Argument>
+                    <Sequence DisplayName="Catch" sap:VirtualizedContainerService.HintSize="520,225.6" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:LogMessage DisplayName="Log skipped row" sap:VirtualizedContainerService.HintSize="486.4,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Warn" Message="[&quot;Skipped sheet row &quot; + (dtPubmats.Rows.IndexOf(row) + 5).ToString + &quot; (&quot; + row(&quot;Event&quot;).ToString + &quot;): &quot; + ex.Message]" />
+                    </Sequence>
+                  </ActivityAction>
+                </Catch>
+              </TryCatch.Catches>
+            </TryCatch>
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEachRow.Body>
+    </ui:ForEachRow>
+    <ui:LogMessage DisplayName="Log summary" sap:VirtualizedContainerService.HintSize="556.8,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Done. Reminders sent: &quot; + intSent.ToString]" />
+  </Sequence>
+</Activity>

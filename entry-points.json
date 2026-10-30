@@ -1,0 +1,31 @@
+{
+  "$schema": "https://cloud.uipath.com/draft/2024-12/entry-point",
+  "entryPoints": [
+    {
+      "filePath": "Main.xaml",
+      "uniqueId": "8b355324-2bf0-4455-b1c3-2f3e9633d4ae",
+      "type": "process",
+      "input": {
+        "type": "object",
+        "properties": {
+          "in_SheetName": {
+            "type": "string",
+            "x-default-expression": "\"POST IT\"",
+            "default": "POST IT"
+          },
+          "in_SheetId": {
+            "type": "string",
+            "x-default-expression": "\"11mJztwWddQWLpLL9LZ4VEkG5nPHs-I5SYoUuxC8c-ew\"",
+            "default": "11mJztwWddQWLpLL9LZ4VEkG5nPHs-I5SYoUuxC8c-ew"
+          },
+          "in_CredentialTarget": {
+            "type": "string",
+            "x-default-expression": "\"PubmatReminder.Gmail\"",
+            "default": "PubmatReminder.Gmail"
+          }
+        },
+        "required": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "DisplayName": "Main",
+  "Tooltip": null,
+  "HelpLink": null,
+  "Color": null,
+  "OriginalIconFileName": null,
+  "Arguments": [
+    {
+      "Name": "in_SheetName",
+      "DisplayName": "in_SheetName",
+      "Category": null,
+      "Tooltip": null,
+      "Placeholder": "Sheet1",
+      "Widget": null,
+      "IsRequired": false,
+      "IsPrincipal": true,
+      "ArgumentType": 0,
+      "DataSourceItems": null
+    },
+    {
+      "Name": "in_SheetId",
+      "DisplayName": "in_SheetId",
+      "Category": null,
+      "Tooltip": null,
+      "Placeholder": "PASTE_SHEET_ID_HERE",
+      "Widget": null,
+      "IsRequired": false,
+      "IsPrincipal": true,
+      "ArgumentType": 0,
+      "DataSourceItems": null
+    },
+    {
+      "Name": "in_CredentialTarget",
+      "DisplayName": "in_CredentialTarget",
+      "Category": null,
+      "Tooltip": null,
+      "Placeholder": "PubmatReminder.Gmail",
+      "Widget": null,
+      "IsRequired": false,
+      "IsPrincipal": true,
+      "ArgumentType": 0,
+      "DataSourceItems": null
+    }
+  ]
+}
